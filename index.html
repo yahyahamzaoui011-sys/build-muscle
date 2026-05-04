@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Build Muscles - Premium Fitness Supplements</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --dark-bg: #0a0a0a;
+            --dark-secondary: #1a1a1a;
+            --light-text: #e8e8e8;
+            --light-grey: #b8b8b8;
+            --accent-red: #e63946;
+            --accent-red-hover: #d62828;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ============ HEADER ============ */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: rgba(10, 10, 10, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(230, 57, 70, 0.1);
+            padding: 1rem 2rem;
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #e63946 0%, #ff6b6b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex: 1;
+            margin-left: 3rem;
+        }
+
+        nav a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent-red);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent-red);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-left: auto;
+        }
+
+        .search-container {
+            position: relative;
+            width: 250px;
+        }
+
+        #searchInput {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            background-color: var(--dark-secondary);
+            border: 1px solid rgba(230, 57, 70, 0.2);
+            border-radius: 6px;
+            color: var(--light-text);
+            font-size: 0.9rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        #searchInput:focus {
+            outline: none;
+            border-color: var(--accent-red);
+            box-shadow: 0 0 10px rgba(230, 57, 70, 0.2);
+        }
+
+        #searchInput::placeholder {
+            color: var(--light-grey);
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .cart-icon:hover {
+            color: var(--accent-red);
+            transform: scale(1.1);
+        }
+
+        .cart-counter {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background-color: var(--accent-red);
+            color: white;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        /* ============ HERO SECTION ============ */
+        .hero {
+            background: linear-gradient(135deg, rgba(230, 57, 70, 0.1) 0%, rgba(10, 10, 10, 0) 100%);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(230, 57, 70, 0.1);
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--light-grey);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ============ PRODUCTS SECTION ============ */
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .category {
+            margin-bottom: 4rem;
+            scroll-margin-top: 100px;
+        }
+
+        .category-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--accent-red);
+            display: inline-block;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .product-card {
+            background-color: var(--dark-secondary);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border: 1px solid rgba(230, 57, 70, 0.1);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-red);
+            box-shadow: 0 20px 40px rgba(230, 57, 70, 0.15);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+            background-color: rgba(230, 57, 70, 0.05);
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--light-text);
+        }
+
+        .product-price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--accent-red);
+            margin-bottom: 1rem;
+        }
+
+        .add-to-cart-btn {
+            background-color: var(--accent-red);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: auto;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: var(--accent-red-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(230, 57, 70, 0.3);
+        }
+
+        .add-to-cart-btn:active {
+            transform: translateY(0);
+        }
+
+        /* ============ FOOTER ============ */
+        footer {
+            background-color: var(--dark-secondary);
+            border-top: 1px solid rgba(230, 57, 70, 0.1);
+            padding: 2rem;
+            text-align: center;
+            color: var(--light-grey);
+            font-size: 0.9rem;
+        }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav {
+                margin-left: 0;
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .header-controls {
+                width: 100%;
+                justify-content: space-between;
+                margin-left: 0;
+                gap: 1rem;
+            }
+
+            .search-container {
+                width: 100%;
+                max-width: 250px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 1.5rem;
+            }
+
+            .product-image {
+                height: 220px;
+            }
+
+            .category-title {
+                font-size: 1.5rem;
+            }
+
+            .main-content {
+                padding: 2rem 1rem;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .product-image {
+                height: 250px;
+            }
+
+            header {
+                padding: 1rem;
+            }
+
+            .logo {
+                font-size: 1.3rem;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .search-container {
+                max-width: 100%;
+            }
+        }
+
+        /* ============ ANIMATIONS ============ */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .product-card {
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        .product-card:nth-child(1) { animation-delay: 0.1s; }
+        .product-card:nth-child(2) { animation-delay: 0.2s; }
+        .product-card:nth-child(3) { animation-delay: 0.3s; }
+        .product-card:nth-child(4) { animation-delay: 0.1s; }
+        .product-card:nth-child(5) { animation-delay: 0.2s; }
+        .product-card:nth-child(6) { animation-delay: 0.3s; }
+
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="header-container">
+            <div class="logo">Build Muscles</div>
+            <nav>
+                <a onclick="scrollToCategory('creatine')">Creatine</a>
+                <a onclick="scrollToCategory('whey')">Whey Protein</a>
+            </nav>
+            <div class="header-controls">
+                <div class="search-container">
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        placeholder="Search products..." 
+                        onkeyup="filterProducts()"
+                    >
+                </div>
+                <div class="cart-icon" title="Shopping Cart">
+                    🛒
+                    <span class="cart-counter" id="cartCounter">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <h1>Premium Fitness Supplements</h1>
+        <p>Unlock your potential with our handpicked collection of high-quality muscle-building supplements.</p>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        <!-- CREATINE CATEGORY -->
+        <section class="category" id="creatine">
+            <h2 class="category-title">Creatine Monohydrate</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <img src="https://myprot.ma/storage/2024/02/Biotech_usa_100_creatine_monohydrate300g.jpg" alt="Biotech Creatine" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-name">Biotech</h3>
+                        <div class="product-price">350 DH</div>
+                        <button class="add-to-cart-btn" onclick="addToCart('Biotech - Creatine Monohydrate', 350)">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://ma.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/02/147156/1.jpg?8639" alt="Muscletech Creatine" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-name">Muscletech</h3>
+                        <div class="product-price">400 DH</div>
+                        <button class="add-to-cart-btn" onclick="addToCart('Muscletech - Creatine Monohydrate', 400)">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://royaltysports.ma/wp-content/uploads/2025/03/1001171065.webp" alt="Optimum Nutrition Creatine" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-name">Optimum Nutrition</h3>
+                        <div class="product-price">400 DH</div>
+                        <button class="add-to-cart-btn" onclick="addToCart('Optimum Nutrition - Creatine Monohydrate', 400)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WHEY PROTEIN CATEGORY -->
+        <section class="category" id="whey">
+            <h2 class="category-title">Whey Protein</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <img src="https://contents.mediadecathlon.com/p1963410/k$d14bbf69f9042f26c62887c9e88a085f/gold-standard-100-whey-chocolat-2270kg.jpg" alt="Gold Standard Whey" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-name">Gold Standard Whey Protein</h3>
+                        <div class="product-price">1049 DH</div>
+                        <button class="add-to-cart-btn" onclick="addToCart('Gold Standard Whey Protein', 1049)">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGSt6awj90_8mlmetiERwTwV2IYM43ZkO8mfJL09gHH2AUC1Erq75Es54&s=10" alt="Isolate Whey Protein" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-name">Isolate Whey Protein</h3>
+                        <div class="product-price">949 DH</div>
+                        <button class="add-to-cart-btn" onclick="addToCart('Isolate Whey Protein', 949)">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaw22BZ0K1bfJulRrRUKIseIRkBv1OzUyhrCL9ZjcqKK80e_FHv-4XKKU&s=10" alt="Tesla Whey Charger" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-name">Tesla Whey Charger 100</h3>
+                        <div class="product-price">649 DH</div>
+                        <button class="add-to-cart-btn" onclick="addToCart('Tesla Whey Charger 100', 649)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 Build Muscles. All rights reserved. | Premium Fitness Supplements</p>
+    </footer>
+
+    <script>
+        // ============ CART FUNCTIONALITY ============
+        let cartCount = 0;
+
+        function addToCart(productName, price) {
+            cartCount++;
+            updateCartCounter();
+            
+            // Visual feedback
+            event.target.textContent = '✓ Added!';
+            event.target.style.backgroundColor = 'var(--accent-red-hover)';
+            
+            setTimeout(() => {
+                event.target.textContent = 'Add to Cart';
+                event.target.style.backgroundColor = 'var(--accent-red)';
+            }, 2000);
+        }
+
+        function updateCartCounter() {
+            document.getElementById('cartCounter').textContent = cartCount;
+        }
+
+        // ============ SEARCH FUNCTIONALITY ============
+        function filterProducts() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const productCards = document.querySelectorAll('.product-card');
+            
+            productCards.forEach(card => {
+                const productName = card.querySelector('.product-name').textContent.toLowerCase();
+                const categoryTitle = card.closest('.category').querySelector('.category-title').textContent.toLowerCase();
+                
+                if (productName.includes(searchTerm) || categoryTitle.includes(searchTerm) || searchTerm === '') {
+                    card.style.display = '';
+                    card.style.opacity = '1';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // ============ SMOOTH SCROLL ============
+        function scrollToCategory(categoryId) {
+            const element = document.getElementById(categoryId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+</html>
