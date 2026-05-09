@@ -158,6 +158,126 @@
             font-weight: 700;
         }
 
+        .cart-page {
+            margin-bottom: 3rem;
+        }
+
+        .transition-panel {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            opacity: 0;
+            transform: translateY(15px);
+        }
+
+        .transition-panel.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .cart-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .cart-header h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .back-button {
+            background-color: transparent;
+            border: 1px solid rgba(230, 57, 70, 0.3);
+            color: var(--light-text);
+            padding: 0.9rem 1.1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            border-color: var(--accent-red);
+            background-color: rgba(230, 57, 70, 0.08);
+        }
+
+        .cart-content {
+            min-height: 220px;
+        }
+
+        .empty-basket-message {
+            color: var(--light-grey);
+            text-align: center;
+            padding: 4rem 1rem;
+            font-size: 1rem;
+        }
+
+        .basket-item-card {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            background-color: var(--dark-secondary);
+            border: 1px solid rgba(230, 57, 70, 0.12);
+            border-radius: 14px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .basket-item-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 12px;
+            object-fit: cover;
+            flex-shrink: 0;
+            background-color: rgba(255, 255, 255, 0.04);
+        }
+
+        .basket-item-details {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+
+        .basket-item-name {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--light-text);
+        }
+
+        .basket-item-meta {
+            color: var(--light-grey);
+            font-size: 0.95rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .basket-item-remove {
+            background-color: transparent;
+            border: none;
+            color: #ff5b70;
+            font-size: 1.25rem;
+            cursor: pointer;
+            padding: 0.2rem 0.5rem;
+            line-height: 1;
+        }
+
+        .basket-item-remove:hover {
+            color: var(--accent-red);
+        }
+
+        .cart-total {
+            margin-top: 2rem;
+            text-align: right;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: white;
+        }
+
         /* ============ HERO SECTION ============ */
         .hero {
             background: linear-gradient(135deg, rgba(230, 57, 70, 0.1) 0%, rgba(10, 10, 10, 0) 100%);
@@ -217,6 +337,7 @@
             display: flex;
             flex-direction: column;
             height: 100%;
+            cursor: pointer;
         }
 
         .product-card:hover {
@@ -227,7 +348,7 @@
 
         .product-image {
             width: 100%;
-            height: 280px;
+            height: 260px;
             object-fit: cover;
             transition: transform 0.4s ease;
             background-color: rgba(230, 57, 70, 0.05);
@@ -242,45 +363,86 @@
             display: flex;
             flex-direction: column;
             flex-grow: 1;
+            min-height: 220px;
         }
 
         .product-name {
-            font-size: 1.1rem;
-            font-weight: 600;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-top: 1rem;
             margin-bottom: 0.5rem;
             color: var(--light-text);
         }
 
         .product-price {
-            font-size: 1.4rem;
-            font-weight: 700;
+            font-size: 1rem;
+            font-weight: 600;
             color: var(--accent-red);
             margin-bottom: 1rem;
         }
 
-        .add-to-cart-btn {
-            background-color: var(--accent-red);
-            color: white;
+        .product-actions {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: auto;
+        }
+
+        .product-action-btn {
             border: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 6px;
-            font-size: 0.95rem;
+            border-radius: 8px;
+            color: white;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: auto;
+            transition: all 0.25s ease;
+            padding: 0.85rem 0.9rem;
+        }
+
+        .product-add-btn {
+            background-color: rgba(230, 57, 70, 0.95);
+            flex: 0 0 65px;
+            font-size: 1.25rem;
+            line-height: 1;
+        }
+
+        .product-buy-btn {
+            background-color: var(--accent-red);
+            flex: 1;
+            font-size: 0.95rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
-        .add-to-cart-btn:hover {
+        .product-action-btn:hover {
             background-color: var(--accent-red-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(230, 57, 70, 0.3);
+            transform: translateY(-1px);
         }
 
-        .add-to-cart-btn:active {
-            transform: translateY(0);
+        .detail-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .detail-image {
+            width: 100%;
+            max-height: 520px;
+            object-fit: cover;
+            border-radius: 14px;
+            background-color: rgba(255, 255, 255, 0.04);
+        }
+
+        .detail-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .detail-description {
+            color: var(--light-grey);
+            line-height: 1.8;
+            font-size: 1rem;
+            max-width: 920px;
         }
 
         /* ============ FOOTER ============ */
@@ -422,8 +584,8 @@
                         onkeyup="filterProducts()"
                     >
                 </div>
-                <div class="cart-icon" title="Shopping Cart">
-                    🛒
+                <div class="cart-icon" id="cartIcon" title="Basket" onclick="openCartPage()">
+                    🧺
                     <span class="cart-counter" id="cartCounter">0</span>
                 </div>
             </div>
@@ -438,34 +600,74 @@
 
     <!-- MAIN CONTENT -->
     <main class="main-content">
+        <section id="cartSection" class="cart-page transition-panel" hidden>
+            <div class="cart-header">
+                <button class="back-button" onclick="showShop()">← Back to Shop</button>
+                <h2>Basket</h2>
+            </div>
+            <div id="cartContent" class="cart-content">
+                <p class="empty-basket-message">The basket is empty</p>
+            </div>
+            <div id="cartTotal" class="cart-total" hidden>Total: 0 DH</div>
+        </section>
+        <section id="detailSection" class="cart-page transition-panel" hidden>
+            <div class="cart-header">
+                <button class="back-button" onclick="closeDetail()">← Back to Shop</button>
+                <h2 id="detailTitle">Product</h2>
+            </div>
+            <div class="detail-content">
+                <img id="detailImage" class="detail-image" src="" alt="">
+                <div>
+                    <div id="detailName" class="detail-title">Product Name</div>
+                    <div id="detailPrice" class="product-price">0 DH</div>
+                </div>
+                <p id="detailDescription" class="detail-description"></p>
+            </div>
+        </section>
+        <div id="shopContent" class="transition-panel visible">
         <!-- CREATINE CATEGORY -->
         <section class="category" id="creatine">
             <h2 class="category-title">Creatine Monohydrate</h2>
             <div class="products-grid">
-                <div class="product-card">
+                <div class="product-card" onclick="openProductDetail('biotech')">
                     <img src="https://myprot.ma/storage/2024/02/Biotech_usa_100_creatine_monohydrate300g.jpg" alt="Biotech Creatine" class="product-image">
                     <div class="product-info">
-                        <h3 class="product-name">Biotech</h3>
-                        <div class="product-price">350 DH</div>
-                        <button class="add-to-cart-btn" onclick="addToCart('Biotech - Creatine Monohydrate', 350)">Add to Cart</button>
+                        <div>
+                            <h3 class="product-name">Biotech</h3>
+                            <div class="product-price">350 DH</div>
+                        </div>
+                        <div class="product-actions">
+                            <button class="product-action-btn product-add-btn" onclick="event.stopPropagation(); addToCart('Biotech - Creatine Monohydrate', 350, 'https://myprot.ma/storage/2024/02/Biotech_usa_100_creatine_monohydrate300g.jpg', this)">+</button>
+                            <button class="product-action-btn product-buy-btn" onclick="event.stopPropagation(); addToCart('Biotech - Creatine Monohydrate', 350, 'https://myprot.ma/storage/2024/02/Biotech_usa_100_creatine_monohydrate300g.jpg', this, true)">Buy Now</button>
+                        </div>
                     </div>
                 </div>
 
-                <div class="product-card">
+                <div class="product-card" onclick="openProductDetail('muscletech')">
                     <img src="https://ma.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/02/147156/1.jpg?8639" alt="Muscletech Creatine" class="product-image">
                     <div class="product-info">
-                        <h3 class="product-name">Muscletech</h3>
-                        <div class="product-price">400 DH</div>
-                        <button class="add-to-cart-btn" onclick="addToCart('Muscletech - Creatine Monohydrate', 400)">Add to Cart</button>
+                        <div>
+                            <h3 class="product-name">Muscletech</h3>
+                            <div class="product-price">400 DH</div>
+                        </div>
+                        <div class="product-actions">
+                            <button class="product-action-btn product-add-btn" onclick="event.stopPropagation(); addToCart('Muscletech - Creatine Monohydrate', 400, 'https://ma.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/02/147156/1.jpg?8639', this)">+</button>
+                            <button class="product-action-btn product-buy-btn" onclick="event.stopPropagation(); addToCart('Muscletech - Creatine Monohydrate', 400, 'https://ma.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/02/147156/1.jpg?8639', this, true)">Buy Now</button>
+                        </div>
                     </div>
                 </div>
 
-                <div class="product-card">
+                <div class="product-card" onclick="openProductDetail('optimum')">
                     <img src="https://royaltysports.ma/wp-content/uploads/2025/03/1001171065.webp" alt="Optimum Nutrition Creatine" class="product-image">
                     <div class="product-info">
-                        <h3 class="product-name">Optimum Nutrition</h3>
-                        <div class="product-price">400 DH</div>
-                        <button class="add-to-cart-btn" onclick="addToCart('Optimum Nutrition - Creatine Monohydrate', 400)">Add to Cart</button>
+                        <div>
+                            <h3 class="product-name">Optimum Nutrition</h3>
+                            <div class="product-price">400 DH</div>
+                        </div>
+                        <div class="product-actions">
+                            <button class="product-action-btn product-add-btn" onclick="event.stopPropagation(); addToCart('Optimum Nutrition - Creatine Monohydrate', 400, 'https://royaltysports.ma/wp-content/uploads/2025/03/1001171065.webp', this)">+</button>
+                            <button class="product-action-btn product-buy-btn" onclick="event.stopPropagation(); addToCart('Optimum Nutrition - Creatine Monohydrate', 400, 'https://royaltysports.ma/wp-content/uploads/2025/03/1001171065.webp', this, true)">Buy Now</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -475,34 +677,50 @@
         <section class="category" id="whey">
             <h2 class="category-title">Whey Protein</h2>
             <div class="products-grid">
-                <div class="product-card">
+                <div class="product-card" onclick="openProductDetail('goldstandard')">
                     <img src="https://contents.mediadecathlon.com/p1963410/k$d14bbf69f9042f26c62887c9e88a085f/gold-standard-100-whey-chocolat-2270kg.jpg" alt="Gold Standard Whey" class="product-image">
                     <div class="product-info">
-                        <h3 class="product-name">Gold Standard Whey Protein</h3>
-                        <div class="product-price">1049 DH</div>
-                        <button class="add-to-cart-btn" onclick="addToCart('Gold Standard Whey Protein', 1049)">Add to Cart</button>
+                        <div>
+                            <h3 class="product-name">Gold Standard Whey Protein</h3>
+                            <div class="product-price">1049 DH</div>
+                        </div>
+                        <div class="product-actions">
+                            <button class="product-action-btn product-add-btn" onclick="event.stopPropagation(); addToCart('Gold Standard Whey Protein', 1049, 'https://contents.mediadecathlon.com/p1963410/k$d14bbf69f9042f26c62887c9e88a085f/gold-standard-100-whey-chocolat-2270kg.jpg', this)">+</button>
+                            <button class="product-action-btn product-buy-btn" onclick="event.stopPropagation(); addToCart('Gold Standard Whey Protein', 1049, 'https://contents.mediadecathlon.com/p1963410/k$d14bbf69f9042f26c62887c9e88a085f/gold-standard-100-whey-chocolat-2270kg.jpg', this, true)">Buy Now</button>
+                        </div>
                     </div>
                 </div>
 
-                <div class="product-card">
+                <div class="product-card" onclick="openProductDetail('isolate')">
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGSt6awj90_8mlmetiERwTwV2IYM43ZkO8mfJL09gHH2AUC1Erq75Es54&s=10" alt="Isolate Whey Protein" class="product-image">
                     <div class="product-info">
-                        <h3 class="product-name">Isolate Whey Protein</h3>
-                        <div class="product-price">949 DH</div>
-                        <button class="add-to-cart-btn" onclick="addToCart('Isolate Whey Protein', 949)">Add to Cart</button>
+                        <div>
+                            <h3 class="product-name">Isolate Whey Protein</h3>
+                            <div class="product-price">949 DH</div>
+                        </div>
+                        <div class="product-actions">
+                            <button class="product-action-btn product-add-btn" onclick="event.stopPropagation(); addToCart('Isolate Whey Protein', 949, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGSt6awj90_8mlmetiERwTwV2IYM43ZkO8mfJL09gHH2AUC1Erq75Es54&s=10', this)">+</button>
+                            <button class="product-action-btn product-buy-btn" onclick="event.stopPropagation(); addToCart('Isolate Whey Protein', 949, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGSt6awj90_8mlmetiERwTwV2IYM43ZkO8mfJL09gHH2AUC1Erq75Es54&s=10', this, true)">Buy Now</button>
+                        </div>
                     </div>
                 </div>
 
-                <div class="product-card">
+                <div class="product-card" onclick="openProductDetail('tesla')">
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaw22BZ0K1bfJulRrRUKIseIRkBv1OzUyhrCL9ZjcqKK80e_FHv-4XKKU&s=10" alt="Tesla Whey Charger" class="product-image">
                     <div class="product-info">
-                        <h3 class="product-name">Tesla Whey Charger 100</h3>
-                        <div class="product-price">649 DH</div>
-                        <button class="add-to-cart-btn" onclick="addToCart('Tesla Whey Charger 100', 649)">Add to Cart</button>
+                        <div>
+                            <h3 class="product-name">Tesla Whey Charger 100</h3>
+                            <div class="product-price">649 DH</div>
+                        </div>
+                        <div class="product-actions">
+                            <button class="product-action-btn product-add-btn" onclick="event.stopPropagation(); addToCart('Tesla Whey Charger 100', 649, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaw22BZ0K1bfJulRrRUKIseIRkBv1OzUyhrCL9ZjcqKK80e_FHv-4XKKU&s=10', this)">+</button>
+                            <button class="product-action-btn product-buy-btn" onclick="event.stopPropagation(); addToCart('Tesla Whey Charger 100', 649, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaw22BZ0K1bfJulRrRUKIseIRkBv1OzUyhrCL9ZjcqKK80e_FHv-4XKKU&s=10', this, true)">Buy Now</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
+        </div>
     </main>
 
     <!-- FOOTER -->
@@ -511,25 +729,188 @@
     </footer>
 
     <script>
-        // ============ CART FUNCTIONALITY ============
-        let cartCount = 0;
+        // ============ CART + PRODUCT DATA ============
+        const products = {
+            biotech: {
+                name: 'Biotech - Creatine Monohydrate',
+                displayName: 'Biotech',
+                price: 350,
+                imageUrl: 'https://myprot.ma/storage/2024/02/Biotech_usa_100_creatine_monohydrate300g.jpg',
+                description: 'Pure Creatine Monohydrate 300g. Increases strength and muscle mass. Recommended dose: 3-5g per day mixed with water or juice. Suitable for all athletes.'
+            },
+            muscletech: {
+                name: 'Muscletech - Creatine Monohydrate',
+                displayName: 'Muscletech',
+                price: 400,
+                imageUrl: 'https://ma.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/02/147156/1.jpg?8639',
+                description: 'Platinum 100% Creatine 400g. Clinically dosed 5g of creatine per serving. Helps build more strength and size. Unflavored and mixes easily.'
+            },
+            optimum: {
+                name: 'Optimum Nutrition - Creatine Monohydrate',
+                displayName: 'Optimum Nutrition',
+                price: 400,
+                imageUrl: 'https://royaltysports.ma/wp-content/uploads/2025/03/1001171065.webp',
+                description: 'Micronized Creatine Powder 300g. Ultra-pure creatine monohydrate. Supports muscle recovery and performance. Mixes instantly with no grit.'
+            },
+            goldstandard: {
+                name: 'Gold Standard Whey Protein',
+                displayName: 'Gold Standard Whey Protein',
+                price: 1049,
+                imageUrl: 'https://contents.mediadecathlon.com/p1963410/k$d14bbf69f9042f26c62887c9e88a085f/gold-standard-100-whey-chocolat-2270kg.jpg',
+                description: '2.27kg chocolate flavor. 24g of protein per serving. Low in fat and sugar. Perfect post-workout shake for muscle recovery and growth.'
+            },
+            isolate: {
+                name: 'Isolate Whey Protein',
+                displayName: 'Isolate Whey Protein',
+                price: 949,
+                imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGSt6awj90_8mlmetiERwTwV2IYM43ZkO8mfJL09gHH2AUC1Erq75Es54&s=10',
+                description: 'Fast absorbing whey isolate. Over 90% pure protein per serving. Lactose free and low carb. Ideal for lean muscle building and fat loss.'
+            },
+            tesla: {
+                name: 'Tesla Whey Charger 100',
+                displayName: 'Tesla Whey Charger 100',
+                price: 649,
+                imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaw22BZ0K1bfJulRrRUKIseIRkBv1OzUyhrCL9ZjcqKK80e_FHv-4XKKU&s=10',
+                description: '2kg high performance whey. 25g of protein per serving. Enriched with vitamins and amino acids. Great taste with excellent mixability.'
+            }
+        };
 
-        function addToCart(productName, price) {
-            cartCount++;
-            updateCartCounter();
-            
-            // Visual feedback
-            event.target.textContent = '✓ Added!';
-            event.target.style.backgroundColor = 'var(--accent-red-hover)';
-            
-            setTimeout(() => {
-                event.target.textContent = 'Add to Cart';
-                event.target.style.backgroundColor = 'var(--accent-red)';
-            }, 2000);
+        let cartItems = [];
+
+        function addToCart(productName, price, imageUrl, button, goToCart = false) {
+            const existingItem = cartItems.find(item => item.name === productName);
+
+            if (existingItem) {
+                existingItem.qty += 1;
+            } else {
+                cartItems.push({ name: productName, price, imageUrl, qty: 1 });
+            }
+
+            updateCartCountFromItems();
+
+            if (button) {
+                button.textContent = '✓ Added!';
+                button.style.backgroundColor = 'var(--accent-red-hover)';
+
+                setTimeout(() => {
+                    button.textContent = button.classList.contains('product-add-btn') ? '+' : 'Buy Now';
+                    button.style.backgroundColor = button.classList.contains('product-add-btn') ? 'rgba(230, 57, 70, 0.95)' : 'var(--accent-red)';
+                }, 1200);
+            }
+
+            if (!document.getElementById('cartSection').hidden) {
+                renderCartPage();
+            }
+
+            if (goToCart) {
+                openCartPage();
+            }
         }
 
-        function updateCartCounter() {
-            document.getElementById('cartCounter').textContent = cartCount;
+        function openCartPage() {
+            const shop = document.getElementById('shopContent');
+            const detail = document.getElementById('detailSection');
+            const cart = document.getElementById('cartSection');
+            renderCartPage();
+            detail.hidden = true;
+            detail.classList.remove('visible');
+            shop.classList.remove('visible');
+            cart.hidden = false;
+            requestAnimationFrame(() => cart.classList.add('visible'));
+            setTimeout(() => {
+                shop.hidden = true;
+                detail.hidden = true;
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 280);
+        }
+
+        function showShop() {
+            const shop = document.getElementById('shopContent');
+            const cart = document.getElementById('cartSection');
+            const detail = document.getElementById('detailSection');
+            cart.classList.remove('visible');
+            detail.classList.remove('visible');
+            shop.hidden = false;
+            requestAnimationFrame(() => shop.classList.add('visible'));
+            setTimeout(() => {
+                cart.hidden = true;
+                detail.hidden = true;
+            }, 280);
+        }
+
+        function openProductDetail(key) {
+            const product = products[key];
+            if (!product) return;
+
+            const shop = document.getElementById('shopContent');
+            const cart = document.getElementById('cartSection');
+            const detail = document.getElementById('detailSection');
+
+            document.getElementById('detailTitle').textContent = product.displayName;
+            document.getElementById('detailName').textContent = product.displayName;
+            document.getElementById('detailPrice').textContent = `${product.price} DH`;
+            document.getElementById('detailImage').src = product.imageUrl;
+            document.getElementById('detailImage').alt = product.displayName;
+            document.getElementById('detailDescription').textContent = product.description;
+
+            cart.hidden = true;
+            cart.classList.remove('visible');
+            shop.classList.remove('visible');
+            detail.hidden = false;
+            requestAnimationFrame(() => detail.classList.add('visible'));
+            setTimeout(() => {
+                shop.hidden = true;
+            }, 280);
+        }
+
+        function closeDetail() {
+            showShop();
+        }
+
+        function updateCartCountFromItems() {
+            const totalQty = cartItems.reduce((sum, item) => sum + item.qty, 0);
+            document.getElementById('cartCounter').textContent = totalQty;
+        }
+
+        function removeFromCart(index) {
+            cartItems.splice(index, 1);
+            updateCartCountFromItems();
+            renderCartPage();
+        }
+
+        function renderCartPage() {
+            const cartContent = document.getElementById('cartContent');
+            const cartTotal = document.getElementById('cartTotal');
+
+            cartContent.innerHTML = '';
+
+            if (cartItems.length === 0) {
+                cartContent.innerHTML = '<p class="empty-basket-message">The basket is empty</p>';
+                cartTotal.hidden = true;
+                return;
+            }
+
+            let totalPrice = 0;
+
+            cartItems.forEach((item, index) => {
+                totalPrice += item.price * item.qty;
+
+                const itemCard = document.createElement('div');
+                itemCard.className = 'basket-item-card';
+                itemCard.innerHTML = `
+                    <img src="${item.imageUrl}" alt="${item.name}" class="basket-item-image">
+                    <div class="basket-item-details">
+                        <div class="basket-item-name">${item.name}</div>
+                        <div class="basket-item-meta">${item.qty} x ${item.price} DH</div>
+                    </div>
+                    <button class="basket-item-remove" onclick="removeFromCart(${index})">×</button>
+                `;
+
+                cartContent.appendChild(itemCard);
+            });
+
+            cartTotal.textContent = `Total: ${totalPrice} DH`;
+            cartTotal.hidden = false;
         }
 
         // ============ SEARCH FUNCTIONALITY ============
